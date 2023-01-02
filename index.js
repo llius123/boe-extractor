@@ -1,15 +1,7 @@
 const fs = require("fs");
 const { XMLParser } = require("fast-xml-parser");
 
-const options = {
-  ignoreAttributes: false,
-};
-let data;
-try {
-  data = fs.readFileSync("boe.xml", "utf8");
-} catch (err) {
-  console.error(err);
-}
+const allTables = getDataFromBoe();
 
 const parser = new XMLParser(options);
 let jsonObj = parser.parse(data);
@@ -124,11 +116,22 @@ function addBody(cell, data, titulo) {
   row++;
 }
 
-// function createBody(marca, tr, currentWs) {
-//     if (!Array.isArray(tr)) {
-//       currentWs.cell(row, 1).string(marca);
+function getDataFromBoe() {
+  const dataXML = readDataFromXML();
+  const parser = new XMLParser({ ignoreAttributes: false });
+  let jsonObj = parser.parse(dataXML);
+  return jsonObj.documento.texto.table;
 
-//       currentWs.cell(row, 2).string(`${tr.td[0]["#text"]}`);
+  function readDataFromXML() {
+    let data;
+    try {
+      data = fs.readFileSync("boe.xml", "utf8");
+    } catch (err) {
+      console.error(err);
+    }
+    return data;
+  }
+}
 
 //       let data1 = tr.td[1]["#text"];
 //       let data2 = tr.td[2]["#text"];

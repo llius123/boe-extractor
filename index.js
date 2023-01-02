@@ -24,16 +24,9 @@ var wb = new xl.Workbook();
 
 // Add Worksheets to the workbook
 var ws = wb.addWorksheet("Coches");
-var ws2 = wb.addWorksheet("Todoterreno");
-var ws3 = wb.addWorksheet("Autocaravana");
 
 let row = 1;
-let firstSheet = true;
-let secondSheet = false;
-let thirdSheet = false;
 createHeader(ws);
-createHeader(ws2);
-createHeader(ws3);
 row++;
 for (const table of allTables) {
   if (table.thead.tr[0] === undefined) {
@@ -41,28 +34,7 @@ for (const table of allTables) {
   }
   const marca = table.thead.tr[0].th["#text"].replace(/Marca: /g, "");
 
-  if (firstSheet) {
-    createBody(marca, table.tbody.tr, ws);
-  }
-
-  if (secondSheet) {
-    createBody(marca, table.tbody.tr, ws2);
-  }
-
-  if (thirdSheet) {
-    createBody(marca, table.tbody.tr, ws3);
-  }
-  if (marca === "ZHIDOU") {
-    firstSheet = false;
-    secondSheet = true;
-    row = 2;
-  }
-  if (marca === "VOLVO" && secondSheet) {
-    console.log("hola2");
-    secondSheet = false;
-    thirdSheet = true;
-    row = 2;
-  }
+  createBody(marca, table.tbody.tr, ws);
 }
 wb.write("boe.xlsx");
 

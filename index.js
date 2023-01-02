@@ -133,48 +133,4 @@ function getDataFromBoe() {
   }
 }
 
-//       let data1 = tr.td[1]["#text"];
-//       let data2 = tr.td[2]["#text"];
-//       if (data1 === undefined) {
-//         data1 = "";
-//       }
-//       if (data2 === undefined) {
-//         data2 = "";
-//       }
-
-//       currentWs.cell(row, 3).string(data1.toString() + "-" + data2.toString());
-//       currentWs.cell(row, 4).string(`${tr.td[3]["#text"]}`);
-//       currentWs.cell(row, 5).string(`${tr.td[4]["#text"]}`);
-//       currentWs.cell(row, 6).string(`${tr.td[5]["#text"]}`);
-//       currentWs.cell(row, 7).string(`${tr.td[6]["#text"]}`);
-//       currentWs.cell(row, 8).string(`${tr.td[7]["#text"]}`);
-//       currentWs.cell(row, 9).string(`${tr.td[8]["#text"]}`);
-//       currentWs.cell(row, 10).string(`${tr.td[9]["#text"]}`);
-//       row++;
-//       return;
-//     }
-//     for (const { td } of tr) {
-//       currentWs.cell(row, 1).string(marca);
-
-//       currentWs.cell(row, 2).string(`${td[0]["#text"]}`);
-
-//       let data1 = td[1]["#text"];
-//       let data2 = td[2]["#text"];
-//       if (data1 === undefined) {
-//         data1 = "";
-//       }
-//       if (data2 === undefined) {
-//         data2 = "";
-//       }
-
-//       currentWs.cell(row, 3).string(data1.toString() + "-" + data2.toString());
-//       currentWs.cell(row, 4).string(`${td[3]["#text"]}`);
-//       currentWs.cell(row, 5).string(`${td[4]["#text"]}`);
-//       currentWs.cell(row, 6).string(`${td[5]["#text"]}`);
-//       currentWs.cell(row, 7).string(`${td[6]["#text"]}`);
-//       currentWs.cell(row, 8).string(`${td[7]["#text"]}`);
-//       currentWs.cell(row, 9).string(`${td[8]["#text"]}`);
-//       currentWs.cell(row, 10).string(`${td[9]["#text"]}`);
-//       row++;
-//     }
-//   }
+function createAndConfigureExcel() {}

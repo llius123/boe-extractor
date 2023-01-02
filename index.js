@@ -6,31 +6,36 @@ const allTables = getDataFromBoe();
 const { excel, excelPage } = createAndConfigureExcel();
 
 let row = 1;
-createHeader(excelPage);
-row++;
-for (const table of allTables) {
-  if (table.thead.tr[0] === undefined) {
-    break;
-  }
-  const marca = table.thead.tr[0].th["#text"].replace(/Marca: /g, "");
 
-  createBody(marca, table.tbody.tr, excelPage);
-}
+// Add headers to excel page
+createHeader(excelPage);
+
+// Move to next row after adding headers
+row++;
+
+// Write data from xml to the excel page
+writeDataOnSpecificExcelPage();
+
+// GRoup all excelpages on excel
 excel.write("boe.xlsx");
 
-function createHeader(test) {
-  const currentWS = test;
-
-  currentWS.cell(row, 1).string("Marca");
-  currentWS.cell(row, 2).string("Modelo");
-  currentWS.cell(row, 3).string("Periodo comercial");
-  currentWS.cell(row, 4).string("CC");
-  currentWS.cell(row, 5).string("N.º Cilidros");
-  currentWS.cell(row, 6).string("G/D");
-  currentWS.cell(row, 7).string("P kW");
-  currentWS.cell(row, 8).string("cvf");
-  currentWS.cell(row, 9).string("cv");
-  currentWS.cell(row, 10).string("valor");
+function createHeader(excelPage) {
+  const headers = [
+    null,
+    "Marca",
+    "Modelo",
+    "Periodo comercial",
+    "CC",
+    "N.º Cilidros",
+    "G/D",
+    "P kW",
+    "cvf",
+    "cv",
+    "valor",
+  ];
+  for (let index = 1; index < 11; index++) {
+    excelPage.cell(row, index).string(headers[index]);
+  }
 }
 
 function createBody(marca, tr, currentWs) {
@@ -131,4 +136,15 @@ function createAndConfigureExcel() {
   // Add Worksheets to the workbook
   var excelPage = excel.addWorksheet("Coches");
   return { excel, excelPage };
+}
+
+function writeDataOnSpecificExcelPage() {
+  for (const table of allTables) {
+    if (table.thead.tr[0] === undefined) {
+      break;
+    }
+    const marca = table.thead.tr[0].th["#text"].replace(/Marca: /g, "");
+
+    createBody(marca, table.tbody.tr, excelPage);
+  }
 }

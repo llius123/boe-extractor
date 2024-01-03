@@ -69,13 +69,13 @@ function addBody(cell, data, titulo) {
   if (data3 === "undefined") {
     data3 = "";
   }
-  cell.cell(row, 4).string(data3);
+  cell.cell(row, 4).number(+data3 || 0);
 
   let data4 = `${data[4]["#text"]}`;
   if (data4 === "undefined") {
     data4 = "";
   }
-  cell.cell(row, 5).string(data4);
+  cell.cell(row, 5).number(+data4 || 0);
 
   let data5 = `${data[5]["#text"]}`;
   if (data5 === "undefined") {
@@ -87,25 +87,28 @@ function addBody(cell, data, titulo) {
   if (data6 === "undefined") {
     data6 = "";
   }
-  cell.cell(row, 7).string(data6);
+  cell.cell(row, 7).number(+data6 || 0);
 
   let data7 = `${data[7]["#text"]}`;
   if (data7 === "undefined") {
     data7 = "";
   }
-  cell.cell(row, 8).string(data7);
+  const ab = Number.parseFloat(data7.replace(',', '.'));
+  cell.cell(row, 8).number(ab || 0);
 
   let data8 = `${data[8]["#text"]}`;
   if (data8 === "undefined") {
     data8 = "";
   }
-  cell.cell(row, 9).string(data8);
+
+  cell.cell(row, 9).number(+data8);
 
   let data9 = `${data[9]["#text"]}`;
   if (data9 === "undefined") {
     data9 = "";
   }
-  cell.cell(row, 10).string(data9);
+  const a = +data9 * 1000
+  cell.cell(row, 10).number(a);
   row++;
 }
 
